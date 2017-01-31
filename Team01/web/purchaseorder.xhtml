@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>PO page</title>
+         <h:outputStylesheet library="css" name="table-style.css"/>   
+    </h:head>
+    <h:body>
+        
+        <!-- Menu tab -->
+        <div id="menu_tab" style="margin-left: 150px">
+            <div class="left_menu_corner"></div>
+            <ul class="menu">
+                <li><a href="Prod_List.xhtml" class="nav1" style="margin-right: 20px">Home</a></li>
+                <li class="divider"></li>
+                <li><a href="Profile.xhtml" class="nav2" style="margin-right: 20px">Profile</a></li>
+                <li class="divider"></li>  
+                <li><a href="shopping_cart.xhtml" class="nav2" style="margin-right: 20px">My Cart</a></li>
+                <li class="divider"></li>
+                <li><a onclick="#{purchaseOrderBean.loadPurchaseOrders(login.loginDetails.userName)}" href="my_purchase_orders.xhtml" class="nav4">My Purchase Orders</a></li>
+                <li class="divider"></li>                        
+                <li><a href="contact.xhtml" class="nav6" >Contact Us</a></li>
+                <li><h:outputLabel value="#{login.loginDetails.userName}"></h:outputLabel></li>
+                <h:commandButton value="Sign Out" action="#{login.signOut()}"/>
+            </ul>                    
+            <div class="right_menu_corner"></div>                    
+        </div>
+
+
+        <h3 style="color: olivedrab;margin-left: 200px">Congratulations! Your purchase order has been created..Your purchase order is #{shoppingCart.po}.</h3>
+        <br/>
+        <h3 style="margin-left: 200px">Please Review your order below.........</h3>
+        <br/>
+        <h:dataTable border="4" value="#{shoppingCart.cart}" var="c" style="margin-left: 150px;width: 1000px">
+            <h:column>
+                <f:facet name="header">Item Name</f:facet>
+                    ${c.prod.p_Name}
+            </h:column>
+
+            <h:column>
+                <f:facet name="header">Unit Price</f:facet>
+                    ${c.prod.p_Price}
+            </h:column>
+            <h:column>
+                <f:facet name="header"> Quantity </f:facet>
+                    ${c.quantity}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Total Price</f:facet>
+                    ${c.quantity*c.prod.p_Price}
+            </h:column>
+            <f:facet name="footer">Total Summary Amount : ${shoppingCart.total}</f:facet>
+        </h:dataTable>
+
+    </h:body>
+</html>

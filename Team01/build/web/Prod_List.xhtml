@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"      
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Buyer User</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <h:outputStylesheet library="css" name="table-style.css"/>        
+    </h:head>
+    <h:body>
+        <h:form id="form_t1">
+            <div id="main_container">
+
+                <!-- Menu tab -->
+                <div id="menu_tab">
+                    <div class="left_menu_corner"></div>
+                    <ul class="menu">
+                        <li><a href="Prod_List.xhtml" class="nav1" style="margin-right: 20px">Home</a></li>
+                        <li class="divider"></li>
+                        <li><a href="Profile.xhtml" class="nav2" style="margin-right: 20px">Profile</a></li>
+                        <li class="divider"></li>  
+                        <li><a href="shopping_cart.xhtml" class="nav2" style="margin-right: 20px">My Cart</a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="#{purchaseOrderBean.loadPurchaseOrders(login.loginDetails.userName)}" href="my_purchase_orders.xhtml" class="nav4">My Purchase Orders</a></li>
+                        <li class="divider"></li>                        
+                        <li><a href="contact.xhtml" class="nav6" >Contact Us</a></li>
+                        <li><h:outputLabel value="#{login.loginDetails.userName}"></h:outputLabel></li>
+                        <h:commandButton value="Sign Out" action="#{login.signOut()}"/>
+                    </ul>                    
+                    <div class="right_menu_corner"></div>                    
+                </div>
+
+                <!-- Menu tab -->
+                <div class="top_bar">  
+                    <div class="center_content" style="margin-left: 20px">
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Select Order Type" class="textc"></h:outputLabel>
+                            <h:selectOneMenu value="#{productBean.orderType}">
+                                <f:selectItem itemValue="Select..." itemLabel="Select..."></f:selectItem>
+                                <f:selectItem itemValue="Material"></f:selectItem>
+                                <f:selectItem itemValue="Service"></f:selectItem>                   
+                            </h:selectOneMenu>   
+                        </h:panelGrid>
+                    </div>
+                    <div class="center_content" style="margin-left: 20px">
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Filter By" class="textc"></h:outputLabel>
+                            <h:selectOneMenu value="#{productBean.criteria1}">
+                                <f:selectItem itemValue="Select..." itemLabel="Select..."></f:selectItem>
+                                <f:selectItem itemValue="Name"></f:selectItem>
+                                <f:selectItem itemValue="Description"></f:selectItem>
+                                <f:selectItem itemValue="Supplier"></f:selectItem>                    
+                            </h:selectOneMenu>   
+                        </h:panelGrid>
+                    </div>
+                    <div class="top_search" style="margin-left: 20px">
+                        <h:panelGrid columns="2">
+                            <h:inputText p:placeholder="Enter Search criteria" value="#{productBean.p_searchCriteria}" class="search_input" style="margin-left: 20px"></h:inputText>   
+                            <h:commandButton action="#{productBean.search()}" class="search_bt" style="width: 35px;height: 30px"></h:commandButton>  
+                        </h:panelGrid>                       
+                    </div>
+                    
+                </div>
+                <div style="height:600px ">                    
+                    <!-- Left Menu for categories -->
+                    <div class="left_content">
+                        <div class="title_box">Categories</div> 
+                        <h:commandLink action="#{productBean.search()}">
+                            <h:selectOneListbox value="#{productBean.category}" style="width:196px" class="left_menu" >
+                                <f:selectItem id="item1" itemLabel="Laptop" itemValue="Laptop"/>
+                                <f:selectItem id="item2" itemLabel="Desktop" itemValue="Desktop" />
+                                <f:selectItem id="item3" itemLabel="Pen drive" itemValue="Pen drive" />
+                                <f:selectItem id="item4" itemLabel="Motherboard" itemValue="Motherboard" />
+                                <f:selectItem id="item5" itemLabel="Processor" itemValue="Processor" />
+                                <f:selectItem id="item6" itemLabel="Keyboard" itemValue="Keyboard" />
+                                <f:selectItem id="item7" itemLabel="Mouse" itemValue="Mouse" />
+                                <f:selectItem id="item8" itemLabel="Graphic card" itemValue="Graphic card" />
+                            </h:selectOneListbox>                         
+                        </h:commandLink>                   
+                        <h:button value="Clear selection" style="height: 25px;border-style: solid"/>
+                        <br/>
+                            <br/>
+                            <h:commandButton value="Subscribe Now!!!" action="#{productBean.sendSuggestions()}" style="height: 25px;border-style: solid;color:black"></h:commandButton>
+                                </div>
+
+                    <div class="center_content">
+                        <p:dataTable rows="#{productBean.p.size()}" value="#{productBean.p}" var="o" paginator="true"
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                     rowsPerPageTemplate="10,20,50" widgetVar="50" styleClass="order-table order-table-header order order-table-firstline-row order-table-secondline-row">
+                            <f:facet name="header">  
+                                Product List  
+                            </f:facet>
+                             <p:column>
+                            <f:facet name="header"><h:outputText value="Select" /></f:facet>
+                            <h:selectBooleanCheckbox value="#{o.selected}"></h:selectBooleanCheckbox> 
+                        </p:column>                            
+                            <p:column>
+                                <f:facet name="header"><h:outputText value="Product Image" /> </f:facet>  
+                                <p:graphicImage value="resources/product_images/#{o.p_image}" style="width: 50px; height: 50px"></p:graphicImage>
+                            </p:column>
+                            <p:column  sortBy="#{o.p_Name}">
+                                <f:facet name="header">  
+                                    <h:outputText value="Product Name" />  
+                                </f:facet>
+                                <h:outputText value="#{o.p_Name}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">  
+                                    <h:outputText value="Description" />  
+                                </f:facet>
+                                <h:outputText value="#{o.p_Description}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">  
+                                    <h:outputText value="Available Quantity" />  
+                                </f:facet>
+                                <h:outputText value="#{o.p_Quantity}"/>
+                            </p:column>
+                            <p:column  sortBy="#{o.p_Price}">
+                                <f:facet name="header">  
+                                    <h:outputText value="Price" />  
+                                </f:facet>
+                                <h:outputText value="#{o.p_Price}"/>
+                            </p:column>
+                            <p:column>
+                            <f:facet name="header"></f:facet>                          
+                            <h:commandLink value="View Details" action="#{productBean.getProdDet(o)}" target="_blank"/>                         
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header"></f:facet>
+                            <h:commandButton action="#{shoppingCart.addCart(o)}" class="addtocart_bt"></h:commandButton> 
+                        </p:column>
+                         
+            </p:dataTable>                  
+                        <h:commandButton value="Add all to cart" action="#{shoppingCart.addToCart(productBean.p)}"/>
+                </div>
+
+                    <!-- Right Menu for Supplier List -->
+                    <div class="right_content">
+
+                        <div class="title_box">Suppliers</div> 
+                        <h:commandLink action="#{productBean.search()}">
+                            <h:selectOneListbox value="#{productBean.p_supplier}" style="width:196px" class="left_menu">
+                                <f:selectItem id="item9" itemLabel="Sony" itemValue="Sony" />
+                                <f:selectItem id="item10" itemLabel="Samsung" itemValue="Samsung" />
+                                <f:selectItem id="item11" itemLabel="LG" itemValue="LG" />
+                                <f:selectItem id="item12" itemLabel="Philips" itemValue="Philips" />
+                                <f:selectItem id="item13" itemLabel="Toshiba" itemValue="Toshiba" />
+                                <f:selectItem id="item14" itemLabel="Acer" itemValue="Acer" />
+                                <f:selectItem id="item15" itemLabel="Apple" itemValue="Apple" />
+                                <f:selectItem id="item16" itemLabel="Hp" itemValue="Hp" />
+                            </h:selectOneListbox>                         
+                        </h:commandLink>
+                        <h:button value="Clear selection" onclick="#{productBean.clear()}" style="height: 25px;border-style: solid"/>                    
+                    </div>
+                </div>
+                
+                <!-- Footer -->
+                <div class="footer center_content">
+                    <div class="center_footer"> All Rights Reserved 2016<br />
+                        <p>&#xA9; Team1</p>
+                        <img src="images/payment.gif" alt="" /> </div>
+                </div>
+
+            </div>
+        </h:form>
+    </h:body>
+</html>

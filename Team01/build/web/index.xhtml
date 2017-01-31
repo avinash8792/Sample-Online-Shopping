@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Login Page</title>
+       <link rel="stylesheet" href="css/style.css"/>
+       <link rel="stylesheet" href="css/video.css"/>
+    </h:head>
+          
+    <h:body>
+        <h:form><br/><br/>
+            <div align="center"><h:outputText value="WELCOME TO TEAM 1 PROJECT" style="  ;font-size: 30px ; color: white; font-weight: bold"/></div>
+        </h:form>
+        <h:form class="login">
+            <video loop="true" autoplay="true" playsinline="true"  muted="true" >
+                <source src="video/video3.mp4" type="video/mp4"/>
+                    Your browser does not support the <code>video</code> tag.
+            </video>
+            
+
+            <h:outputText value="Email" style="color: white; font-weight: bold"/>
+            <br/>
+            
+            <h:inputText id="uname" required ="true" class="login-input" requiredMessage="The User Name field cannot be empty!" title="Please enter your Email" value="#{login.userId}">
+                </h:inputText>           
+            <h:message for="uname" style="color: red"/>
+        <br/>
+            <h:outputText value="Password" style="color: white; font-weight: bold"/>
+            <br/>
+            
+                <h:inputSecret id="psw" required ="true" class="login-input" requiredMessage="The Password field cannot be empty!" title="Please enter your Password"  value="#{login.password}"/> &nbsp;&nbsp;&nbsp;
+             <h:message for="psw" style="color: red"/>
+           <br/><br/>
+            <h:outputText style="color: greenyellow; font-size: 15px" escape="false" value="#{login.loginResult}"/>
+          
+            <h:commandButton id="submit" class="login-submit" value="Submit" action="#{login.login()}"/>
+            
+                
+                <h:link id="funame" style="color: white;" value="Forgot Username" outcome="ForgotUserName.xhtml"/>
+           <br/>
+           <h:link id="fp" style="color: white;"  value="Forgot Password" outcome="ForgotPassword.xhtml"/>
+           <br/>
+           <h:link id="newUser" style="color: white;" value="Sign Up" outcome="registration.xhtml"/>
+            
+           
+        
+  </h:form> 
+        
+    </h:body>
+   
+</html>
+

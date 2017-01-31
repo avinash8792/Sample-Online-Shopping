@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Product Add Page</title>
+          <h:outputStylesheet library="css" name="table-style.css"/>   
+    </h:head>
+    <h:body>
+          <h:form enctype="multipart/form-data">
+              
+              
+              <div id="main_container">
+                  <div id="menu_tab">
+                    <div class="left_menu_corner"></div>
+                    <ul class="menu">
+                        <li><a href="BuyerAdmin.xhtml" class="nav1" style="width: 200px">Home</a></li>
+                        <li class="divider"></li>
+                        <li><a href="contact.xhtml" class="nav6" style="width: 200px">Contact Us</a></li>
+                        <li class="divider"></li>
+                        <li><a href="addProduct.xhtml" class="nav2" style="width: 200px">Add Product</a></li>
+                        <h:commandButton value="Sign Out" action="#{login.signOut()}"/>
+                    </ul>                    
+                    <div class="right_menu_corner"></div>                    
+                </div>
+              </div>
+              
+              
+              <h:panelGrid columns="4" style="margin-left: 450px;width: 500px;height: 500px">
+            <h:outputText value="Product ID"/>
+            <h:inputText value="#{uploadController.p_id}" required="true" requiredMessage="Required Product ID" id="id"/>
+            <h:message for="id" style="color: red"/>
+            <br/>
+            <br/>
+            <h:outputText value="Product Name"/>
+            <h:inputText value="#{uploadController.p_name}" required="true" requiredMessage="Required Product Name" id="name"/>
+            <h:message for="name" style="color: red"/>
+               <br/>
+             <h:outputText value="Product description"/>
+             <h:inputText value="#{uploadController.p_desc}" required="true" requiredMessage="Required Description" id="desc"/>
+             <h:message for="desc" style="color: red"/>
+               <br/>
+              <h:outputText value="Product Price"/>
+              <h:inputText value="#{uploadController.p_price}" required="true" requiredMessage="Required Price" id="price"/>
+              <h:message for="price" style="color: red"/>
+               <br/>
+             <h:outputText value="Quantity Available"/>
+             <h:inputText value="#{uploadController.p_qty}" required="true" requiredMessage="Required Quantity" id="quan"/>
+             <h:message for="quan" style="color: red"/>
+              <br/>
+           
+             <h:outputText value="Choose Product Image"/>
+             <h:inputFile value="#{uploadController.file}" required="true" requiredMessage="Required Image" id="image1"/>
+             <h:message for="image1" style="color: red"/>
+              <br/>
+            <h:outputText value="Choose Product Image"/>
+            <h:inputFile value="#{uploadController.file2}" required="true" requiredMessage="Required Image" id="image2"/>
+            <h:message for="image2" style="color: red"/>
+             <br/>
+            <h:outputText value="Choose Product Image"/>
+            <h:inputFile value="#{uploadController.file3}" required="true" requiredMessage="Required Image" id="image3"/>
+            <h:message for="image3" style="color: red"/>
+              <br/>
+            <h:outputText value="Supplier Name"/>
+            <h:inputText value="#{uploadController.p_supplier}" required="true" requiredMessage="Required Supplier" id="supp"/>
+            <h:message for="supp" style="color: red"/>
+              <br/>
+            <h:outputText value="Category"/>
+            <h:inputText value="#{uploadController.p_category}" required="true" requiredMessage="Required Category" id="cat"/>
+            <h:message for="cat" style="color: red"/>
+              <br/>
+                <h:outputText value="Order Type"/>
+                <h:inputText value="#{uploadController.p_ordertype}" required="true" requiredMessage="Required Order type" id="order"/>
+             <h:message for="quan" style="color: red"/>
+              <br/>
+              </h:panelGrid>
+              <div style="margin-left: 600px">
+              <h:commandButton value="Submit" action="#{uploadController.upload()}"/>
+              </div>
+        </h:form>
+    </h:body>
+</html>
+

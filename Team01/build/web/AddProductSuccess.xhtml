@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet library="css" name="table-style.css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            
+             <!-- Menu tab -->
+              <div id="menu_tab" style="margin-left: 150px">
+                    <div class="left_menu_corner"></div>
+                    <ul class="menu">
+                        <li><a href="BuyerAdmin.xhtml" class="nav1" style="width: 150px">Home</a></li>
+                        <li class="divider"></li>
+                        <li><a href="addProduct.xhtml" class="nav2" style="width: 150px">Add Product</a></li>
+                        <li class="divider"></li>  
+                        <h:commandButton value="Sign Out" action="#{login.signOut()}"/>
+                    </ul>                    
+                    <div class="right_menu_corner"></div>                    
+                </div>
+                <br/>
+                <br/>
+             
+             <h:commandButton value="Add another product" action="addProduct" style="margin-left: 200px"/>
+        </h:form>
+    </h:body>
+</html>
+

@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Security Questions</title>
+        <link rel="stylesheet" href="css/style.css"/>
+        <h:outputStylesheet library="css" name="table-style.css"/> 
+    </h:head>
+    <h:body>
+
+
+        <!-- Menu tab -->
+        
+<h:form class="login">
+             <h:outputText value="#{login.loginDetails.q1}" style="font-weight: bold"/>
+             <h:inputText id="a1" required ="true" class="login-input" requiredMessage="This field cannot be empty" value="#{login.a1}">
+                </h:inputText> 
+             <h:message for="a1" style="color: red"/>
+             <br/>
+            <h:outputText value="#{login.loginDetails.q2}" style="font-weight: bold"/>
+             <h:inputText id="a2" required ="true" class="login-input" requiredMessage="This field cannot be empty" value="#{login.a2}">
+                </h:inputText>
+             <h:message for="a2" style="color: red"/>
+             <p>
+                <h:commandButton id="submit" value="Submit" class="login-submit" 
+                                 action="#{login.validateSecurityQuestion()}" />
+                <h:commandButton value="Back" immediate="true" class="login-submit" action="ForgotPassword.xhtml"/>
+            </p>
+            
+            <h:outputText style="color: greenyellow; font-size: 15px" escape="false" value="#{login.securityQuestionError}"/>
+        
+
+        </h:form>
+    </h:body>
+</html>
+

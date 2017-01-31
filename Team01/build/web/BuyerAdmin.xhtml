@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Buyer Admin</title>
+        <h:outputStylesheet library="css" name="table-style.css"/>
+    </h:head>
+    <h:body>
+        
+        <h:form>
+            
+              <!-- Menu tab -->
+              <div id="menu_tab" style="margin-left: 150px">
+                    <div class="left_menu_corner"></div>
+                    <ul class="menu">
+                        <li><a href="BuyerAdmin.xhtml" class="nav1" style="width: 250px">Home</a></li>
+                        <li class="divider"></li>
+                        <li><a href="addProduct.xhtml" class="nav2" style="width: 250px">Add Product</a></li>
+                        <li class="divider"></li>  
+                         <li><h:outputLabel value="#{login.loginDetails.userName}"></h:outputLabel></li>
+                        <h:commandButton value="Sign Out" action="#{login.signOut()}"/>
+                    </ul>                    
+                    <div class="right_menu_corner"></div> 
+                    
+                    <h:selectOneMenu value="#{buyerAdminJDBC.status_type}" style="width:150px;margin-left: 50px">
+            <f:selectItem itemValue="#{null}" itemLabel="Select..!"/>
+            <f:selectItem itemValue="all" itemLabel="all"/>
+            <f:selectItem itemValue="pending" itemLabel="pending"/>
+            <f:selectItem itemValue="approved" itemLabel="approved"/>
+             <f:selectItem itemValue="rejected" itemLabel="rejected"/>
+        </h:selectOneMenu>
+                    <h:commandButton value="search" action="#{buyerAdminJDBC.search()}"/>
+                </div>
+              <p:dataTable rows="#{buyerAdminJDBC.polist.size()}" value="#{buyerAdminJDBC.polist}" var="p" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} " rowsPerPageTemplate="10,20,50" 
+                           widgetVar="50" styleClass="order-table order-table-header order order-table-firstline-row order-table-secondline-row" style="width: 970px;margin-left: 150px">
+              
+                  <p:column class="table_table_column" style="width: 50px">
+                       <f:facet name="header"> PO ID </f:facet>
+                    #{p.PO_id}
+                      
+                  </p:column>
+                  <p:column class="table_table_column" style="width: 75px">
+                      
+                       <f:facet name="header"> PO Sender </f:facet>
+                    #{p.PO_sender}
+                  </p:column>
+                  <p:column class="table_table_column" style="width: 75px">
+                      <f:facet name="header"> PO Receiver </f:facet>
+                    #{p.PO_receiver}
+                      
+                  </p:column>
+                  <p:column class="table_table_column" style="width: 80px">
+                      <f:facet name="header"> PO Gen Date </f:facet>
+                    #{p.PO_gen_date}
+                      
+                  </p:column>
+                  <p:column class="table_table_column" style="width: 100px">
+                      <f:facet name="header"> PO App Date </f:facet>
+                    #{p.PO_app_date}
+                      
+                  </p:column>
+                  <p:column class="table_table_column" style="width: 100px">
+                        <f:facet name="header"> PO Status </f:facet>
+                    #{p.PO_status}
+                      
+                  </p:column>
+                  <p:column class="table_table_column" style="width: 100px">
+                      
+                       <f:facet name="header"> PO Description </f:facet>
+                    #{p.PO_status_Description}
+                  </p:column>
+                   <p:column class="table_table_column" style="width: 100px">
+                      
+                       <f:facet name="header"> PO Description </f:facet>
+                       <p:commandButton value="Approve" action="#{uploadController.approvePO(p.PO_id)}"  disabled="#{buyerAdminJDBC.disableButton(p.PO_status)}" onclick="windows.location.reload()">
+
+                       </p:commandButton>
+                  </p:column>
+                   <p:column class="table_table_column" style="width: 100px">
+                      
+                       <f:facet name="header"> PO Description </f:facet>
+                       <p:commandButton value="Reject" action="#{uploadController.rejectPO(p.PO_id)}" disabled="#{buyerAdminJDBC.disableButton(p.PO_status)}" onclick="windows.location.reload()">
+
+                       </p:commandButton>
+                  </p:column>
+              </p:dataTable>
+              
+            
+        </h:form>
+    </h:body>
+</html>
+
+
+

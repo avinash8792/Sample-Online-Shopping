@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"      
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Details</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="css/viewdetail.css" rel="stylesheet" type="text/css"/>
+        <h:outputStylesheet library="css" name="table-style.css"/>        
+    </h:head>
+    <h:body>
+        <h:form id="form_t1">
+            <div id="main_container">
+                <!-- Menu tab -->
+                <div id="menu_tab">
+                    <div class="left_menu_corner"></div>
+                    <ul class="menu">
+                        <li><a href="Prod_List.xhtml" class="nav1">Home</a></li>
+                        <li class="divider"></li>
+                        <li><a href="Profile.xhtml" class="nav2">Profile</a></li>
+                        <li class="divider"></li>  
+                        <li><a href="shopping_cart.xhtml" class="nav2">My Cart</a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="#{purchaseOrderBean.loadPurchaseOrders(login.loginDetails.userName)}" href="my_purchase_orders.xhtml" class="nav4">My Purchase Orders</a></li>
+                        <li class="divider"></li>                        
+                        <li><a href="contact.xhtml" class="nav6">Contact Us</a></li>
+                        <h:commandButton value="Sign Out" action="#{login.signOut()}"/>
+                    </ul>                    
+                    <div class="right_menu_corner"></div>                    
+                </div>
+                    
+                <br/><br/><br/><br/>
+                <div class="center_content" style="margin-left: 200px">
+                    <div class="gallery" align="center">
+                        <div class="thumbnails">
+                            <img onmouseover="preview.src = img1.src" name="img1" src="resources/product_images/#{productBean.p_image}" alt="" />
+                            <img onmouseover="preview.src = img2.src" name="img2" src="resources/product_images/#{productBean.p_image2}" alt="" />
+                            <img onmouseover="preview.src = img3.src" name="img3" src="resources/product_images/#{productBean.p_image3}" alt="" />
+                        </div>
+                        <div class="preview" align="center" style="margin-left: 00px">
+                            <img name="preview" src="resources/product_images/#{productBean.p_image}" alt=""/>
+                                <br/><br/>
+                        </div>
+                    </div>
+                    <div>
+                        <h:panelGrid columns="2" style="margin-left: 200px;height: 200px">
+                            <h:outputText value="Product Name : " style="color: whitesmoke"/> #{productBean.p_Name}
+                            <h:outputText value="Product Description: " style="color: whitesmoke"/> #{productBean.p_Description}
+                            <h:outputText value="Product Price : " style="color: whitesmoke"/> #{productBean.p_Price}
+                            <h:outputText value="Supplier : " style="color: whitesmoke"/> #{productBean.p_supplier}
+                            <h:commandButton value="Add To Cart" style="width: 100px;height: 20px" action="#{shoppingCart.addCart(productBean.pv.get(0))}"></h:commandButton>  
+
+                        </h:panelGrid>
+                    </div>
+                </div>
+
+
+                <!-- Footer -->
+                <div class="footer center_content">
+                    <div class="center_footer"> All Rights Reserved 2016<br />
+                        <p>&#xA9; Team1</p>
+                        <img src="images/payment.gif" alt="" /> </div>
+                </div>
+            </div>
+
+
+
+        </h:form>
+
+        
+    </h:body>
+</html>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Profile Page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        
+        <h:outputStylesheet library="css" name="table-style.css"/> 
+       <link rel="stylesheet" href="css/profile.css"/>      
+    </h:head>
+    <h:body>
+        <h:form class="form_t1">
+
+            <div id="main_container">
+            <!-- Menu tab -->
+                <div id="menu_tab">
+                    <div class="left_menu_corner"></div>
+                    <ul class="menu">
+                        <li><a href="Prod_List.xhtml" class="nav1">Home</a></li>
+                        <li class="divider"></li>
+                        <li><a href="Profile.xhtml" class="nav2">Profile</a></li>
+                        <li class="divider"></li>  
+                        <li><a href="shopping_cart.xhtml" class="nav2">My Cart</a></li>
+                        <li class="divider"></li>
+                        <li><a onclick="#{purchaseOrderBean.loadPurchaseOrders(login.loginDetails.userName)}" href="my_purchase_orders.xhtml" class="nav4">My Purchase Orders</a></li>
+                        <li class="divider"></li>                        
+                        <li><a href="contact.xhtml" class="nav6">Contact Us</a></li>
+                        <h:commandButton value="Sign Out" action="#{login.signOut()}"/>
+                    </ul>                    
+                    <div class="right_menu_corner"></div>                    
+                </div>
+            </div>
+        </h:form>
+        <h:form class="login">
+            <h:outputText value="First Name" style="color: white; font-weight: bold"/>
+            <br/>
+            
+            <h:inputText id="fn" required ="true" class="login-input"  value="#{login.firstName}">
+                </h:inputText>           
+
+            <h:outputText value="Last Name" style="color: white; font-weight: bold"/>
+            <br/>
+            
+            <h:inputText id="ln" required ="true" class="login-input" value="#{login.lastName}"/>
+            
+            <h:outputText value="Phone Number" style="color: white; font-weight: bold"/>
+            <br/>
+            
+            <h:inputText id="phn" required ="true" class="login-input"  value="#{login.phoneNumber}"/>
+            
+            <h:outputText value="Email" style="color: white; font-weight: bold"/>
+            <br/>
+            
+            <h:inputText id="email" required ="true" class="login-input" readonly="true" value="#{login.userId}"/>
+            
+             <h:outputText value="address1" style="color: white; font-weight: bold"/>
+            <br/>
+            
+            <h:inputText id="ad1" required ="false" class="login-input"  value="#{login.address1}"/>
+            
+             <h:outputText value="address2" style="color: white; font-weight: bold"/>
+            <br/>
+            
+            <h:inputText id="ad2" required ="false" class="login-input"  value="#{login.address2}"/>
+            
+            
+             <h:outputText value="city" style="color: white; font-weight: bold"/>
+            <br/>
+            
+            <h:inputText id="c" required ="false" class="login-input"  value="#{login.city}"/>
+            
+            
+             <h:outputText value="state" style="color: white; font-weight: bold"/>
+            <br/>
+            
+            <h:inputText id="st" required ="false" class="login-input" value="#{login.state}"/>
+            
+             <h:outputText value="zipcode" style="color: white; font-weight: bold"/>
+            <br/>
+            
+            <h:inputText id="z" required ="false" class="login-input"  value="#{login.zip}"/>
+            
+           
+            <h:outputText value="Current Password" style="color: white; font-weight: bold"/>
+            <br/>
+            
+            <h:inputSecret   id="cpwd" required ="true" class="login-input"  value="#{login.password}"/>
+            
+            <h:outputText value="New Password" style="color: white; font-weight: bold"/>
+            <br/>
+            
+            <h:inputSecret id="npwd" required ="true" class="login-input" requiredMessage="The New Password field cannot be empty!" title="Please enter your New Password"  value="#{login.newPassword}"/>
+            <br/><br/>
+           
+            <h:commandButton id="submit" class="login-submit" value="Submit" action="#{login.updateProfilePassword()}"/>              
+  </h:form> 
+        
+    </h:body>
+</html>

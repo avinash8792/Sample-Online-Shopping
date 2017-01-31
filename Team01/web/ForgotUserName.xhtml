@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Forgot Username Page</title>
+        <link rel="stylesheet" href="css/style.css"/>
+    <h:outputStylesheet library="css" name="table-style.css"/> 
+    </h:head>
+    <h:body>
+        
+          <!-- Menu tab -->
+          <h:form class="login">
+            <h:outputText value="Please fill the details below" style="font-weight: bold"/>
+            <br/>
+            <br/>
+            <h:outputText value="First Name" style="font-weight: bold"/>
+
+                        <h:inputText id="fn" required ="true" 
+                                     class="login-input"
+                                     requiredMessage="first name field cannot be empty"
+                                     
+                                     value="#{login.firstName}">
+
+                        </h:inputText>
+           <h:message for="fn" style="color: red"/>
+            
+            <br/>
+            <br/>
+            <h:outputText value="Last Name" style="font-weight: bold"/>
+
+                        <h:inputText id="ln" required ="true" 
+                                     class="login-input"
+                                     requiredMessage="last name field cannot be empty"
+                                    
+                                     value="#{login.lastName}">
+
+                        </h:inputText>
+           <h:message for="ln" style="color: red"/>
+            
+            <br/>
+            <br/>
+            
+             <h:outputText value="Phone Number" style="font-weight: bold"/>
+
+                        <p:inputText id="ph" required ="true" 
+                                     class="login-input"
+                                     requiredMessage="phone number field cannot be empty"
+                                     
+                                     value="#{login.phoneNumber}"
+                                     validatorMessage="phone number should be xxx-xxx-xxxx" placeholder="xxx-xxx-xxxx">
+
+                        </p:inputText>
+           
+            <h:message for="ph" style="color: red"/>
+            <br/>
+            <br/>
+            <p>
+                <h:commandButton id="submit" value="Submit" class="login-submit" 
+                                 action="#{login.forgotUserName()}" />
+                
+                <h:commandButton value="Back" immediate="true" class="login-submit" action="index.xhtml"/>
+            </p>
+             <h:outputText style="color: greenyellow; font-size: 15px"  value="#{login.userNameError}"/>
+          
+        </h:form>
+    </h:body>
+</html>
+
